@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/filter_dialog_padding_left"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_dialog_name"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/courseSpinnerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filter_dialog_vertical_margin"></Spinner>
+
+    <EditText
+        android:id="@+id/markEditTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filter_dialog_vertical_margin"
+        android:hint="@string/filter_dialog_mark"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/filter_dialog_vertical_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/clearButtonId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/filter_dialog_clear_button"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/OkButtonId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/filter_dialog_button_left_margin"
+            android:text="@string/filter_dialog_ok_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

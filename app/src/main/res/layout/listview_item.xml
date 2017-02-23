@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/listview_item_padding"
+    android:paddingBottom="@dimen/listview_item_padding"
+    android:background="@color/listviewBackgoundColor"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/listview_item_margin"
+        android:src="@drawable/ic_perm_contact_calendar_black_36dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/listview_item_margin"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/nameId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"
+
+            android:text="Ian-10 Petrov-10"/>
+        <TextView
+            android:id="@+id/dateId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:text="10.02.1998"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/infoImageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:layout_marginRight="@dimen/listview_item_margin"
+            android:src="@drawable/ic_info_outline_black_24dp"/>
+    </LinearLayout>
+
+</LinearLayout>

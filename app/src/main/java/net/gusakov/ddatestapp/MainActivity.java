@@ -22,24 +22,14 @@ public class MainActivity extends Activity {
     StudentCursorAdapter adapter;
     ListView listView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.filterId);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FilterDialogFragment dialog = new FilterDialogFragment();
-                dialog.setAdapter(adapter);
-                dialog.setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.Theme_Holo_Dialog);
-                dialog.show(getFragmentManager(), "MyDialogFragment");
-
-            }
-        });
+        initFilter();
         listView = (ListView) findViewById(R.id.listview);
-//  SELECT  _id,first_name,last_name,birthday FROM studentsWHERE (_id=1 OR _id=2 OR _id=7 OR _id=8 OR _id=9 OR _id=17 OR _id=19 OR _id=20 OR _id=24 OR _id=37 OR _id=41 OR _id=47 OR _id=48 OR _id=52 OR _id=61 OR _id=62 OR _id=63 OR _id=64 OR _id=68 OR _id=78) LIMIT 20
 
         if (firsttime()) {
             initListViewWhenDataBaseFilled();
@@ -49,15 +39,38 @@ public class MainActivity extends Activity {
         }
     }
 
+    private void initFilter() {
+        ImageButton imageButton = (ImageButton) findViewById(R.id.filterId);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FilterDialogFragment dialog = new FilterDialogFragment();
+                dialog.setAdapter(adapter);
+                dialog.setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.Theme_Holo_Dialog);
+                dialog.show(getFragmentManager(), "FilterDialogFragment");
+
+            }
+        });
+    }
+
     public void initialListView() {
-        adapter = StudentCursorAdapter.newInstance(this);
+        adapter = StudentCursorAdapter.newInstanceWithConnectionToDataBase(this);
         listView.setAdapter(adapter);
     }
 
     @Override
     protected void onDestroy() {
         adapter.closeAdapterConnectionToDataBase();
+        clearFilterState();
         super.onDestroy();
+    }
+
+    private void clearFilterState() {
+        SharedPreferences shared=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        SharedPreferences.Editor ed=shared.edit();
+        ed.remove(FilterDialogFragment.SHARED_PREF_INT_SPINNER_ID);
+        ed.remove(FilterDialogFragment.SHARED_PREF_STRING_MARK);
+        ed.commit();
     }
 
     private void initListViewWhenDataBaseFilled() {

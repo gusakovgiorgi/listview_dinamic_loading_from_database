@@ -5,6 +5,5 @@
     <string name="filter_dialog_clear_button">Clear</string>
     <string name="filter_dialog_ok_button">OK</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_dialog_name">Courses</string>
 </resources>

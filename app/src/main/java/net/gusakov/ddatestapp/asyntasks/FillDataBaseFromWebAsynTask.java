@@ -23,7 +23,8 @@ import java.io.Reader;
 import java.net.URL;
 
 /**
- * Created by hasana on 2/23/2017.
+ * Created by gusakov on 2/23/2017.
+ * this class get data from web and record it to database. In the end it initialize main activity view throw its context
  */
 
 public class FillDataBaseFromWebAsynTask extends AsyncTask<URL, Void, Void> {
@@ -33,7 +34,7 @@ public class FillDataBaseFromWebAsynTask extends AsyncTask<URL, Void, Void> {
 
     public FillDataBaseFromWebAsynTask(Context ctx, View progressBarFrameView) {
         this.progressBarFrameView = progressBarFrameView;
-        this.ctx=ctx;
+        this.ctx = ctx;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class FillDataBaseFromWebAsynTask extends AsyncTask<URL, Void, Void> {
         try {
             MainActivity mainActivity = (MainActivity) ctx;
             mainActivity.initialListView();
-        }catch (ClassCastException e){
+        } catch (ClassCastException e) {
             e.printStackTrace();
         }
     }

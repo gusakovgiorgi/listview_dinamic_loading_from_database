@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by hasana on 2/22/2017.
+ * Created by gusakov on 2/22/2017.
+ * bean class for students
  */
 
 public class Student {
@@ -95,8 +96,8 @@ public class Student {
         StringBuilder sb=new StringBuilder("[");
 
 
-        for (Integer key:marks.keySet()) {
-            sb.append(CourseUtil.getCourseString(key)+"-"+(marks.get(key))+",");
+        for (Integer key : marks.keySet()) {
+            sb.append(CourseUtil.getCourseString(key) + "-" + (marks.get(key)) + ",");
         }
         return "Student{" +
                 "id=" + id +

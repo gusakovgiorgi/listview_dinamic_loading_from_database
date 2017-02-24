@@ -1,6 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/listview_divider_height"
+    android:background="@color/grey"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_marginLeft="@dimen/detail_dialog_side_margin"
+        android:text="Course-default"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_marginTop="@dimen/detail_dialog_mark_margin"
+        android:layout_marginBottom="@dimen/detail_dialog_mark_margin"
+        android:layout_marginRight="@dimen/detail_dialog_side_margin"
+        android:paddingLeft="@dimen/detail_dialog_mark_horizontal_padding"
+        android:paddingRight="@dimen/detail_dialog_mark_horizontal_padding"
+        android:paddingTop="@dimen/detail_dialog_mark_vertical_padding"
+        android:paddingBottom="@dimen/detail_dialog_mark_vertical_padding"
+        android:text="default"/>
+</RelativeLayout>

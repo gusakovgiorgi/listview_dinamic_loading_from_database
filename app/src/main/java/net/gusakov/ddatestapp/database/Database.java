@@ -12,6 +12,7 @@ import net.gusakov.ddatestapp.classes.CourseUtil;
 import net.gusakov.ddatestapp.classes.Filter;
 import net.gusakov.ddatestapp.classes.Student;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,8 @@ import java.util.Map;
 import static net.gusakov.ddatestapp.classes.CourseUtil.UNINITIALIZED;
 
 /**
- * Created by hasana on 2/22/2017.
+ * Created by gusakov on 2/22/2017.
+ * Database class
  */
 
 public class Database extends SQLiteOpenHelper {
@@ -31,7 +33,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     private static final String TAG = "Database";
-    private static int DB_VERSION = 8;
+    private static int DB_VERSION = 9;
 
     public static final String SQLITE_REQUIRED_ID = "_id";
     //db name
@@ -142,10 +144,15 @@ public class Database extends SQLiteOpenHelper {
             String[] studentIds = getStudentIdsByCourseAndMark(filter.getCourseId() + "", filter.getMark() + "", filter.getReadNumber() + "");
 
             StringBuilder whereSb = new StringBuilder("(");
-            for (int i = 0; i < studentIds.length - 1; i++) {
-                whereSb.append(ST_TB_ID).append("=").append(studentIds[i]).append(" OR ");
+            if(studentIds.length>0) {
+                for (int i = 0; i < studentIds.length - 1; i++) {
+                    whereSb.append(ST_TB_ID).append("=").append(studentIds[i]).append(" OR ");
+                }
+                whereSb.append(ST_TB_ID).append("=").append(studentIds[studentIds.length - 1]).append(")");
+            }else{
+                //for returning empty cursor
+                whereSb.append(ST_TB_ID).append("=").append(UNINITIALIZED).append(")");
             }
-            whereSb.append(ST_TB_ID).append("=").append(studentIds[studentIds.length - 1]).append(")");
 
             return db.rawQuery("SELECT  " + ST_TB_ID + "," + ST_TB_FIRST_NAME + "," + ST_TB_LAST_NAME + "," + ST_TB_BIRTHDAY +
                     " FROM " + TB_STUDENT + " WHERE " + whereSb.toString() + " LIMIT " + filter.getReadNumber(), null);
@@ -164,6 +171,16 @@ public class Database extends SQLiteOpenHelper {
         return studentIds;
     }
 
+    public Map<Integer,Integer> getStudentMarks(Integer studentId) {
+        Cursor courseAndMarkCursor=db.rawQuery("SELECT  " + MARK_TB_COURSE_ID + "," + MATK_TB_MARK +
+                " FROM " + TB_MARK + " WHERE " +MARK_TB_STUDENTS_ID+"="+studentId, null);
+        Map<Integer,Integer> marks=new HashMap<>(4,1.25f);
+        while (courseAndMarkCursor.moveToNext()){
+            marks.put(courseAndMarkCursor.getInt(courseAndMarkCursor.getColumnIndex(MARK_TB_COURSE_ID)),courseAndMarkCursor.getInt(courseAndMarkCursor.getColumnIndex(MATK_TB_MARK)));
+        }
+        return marks;
+    }
+
     public boolean openSqlConnection() {
         try {
             db = this.getWritableDatabase();
@@ -180,4 +197,6 @@ public class Database extends SQLiteOpenHelper {
             db = null;
         }
     }
+
+
 }

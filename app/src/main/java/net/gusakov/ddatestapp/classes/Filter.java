@@ -3,7 +3,8 @@ package net.gusakov.ddatestapp.classes;
 import static net.gusakov.ddatestapp.classes.CourseUtil.UNINITIALIZED;
 
 /**
- * Created by hasana on 2/23/2017.
+ * Created by gusakov on 2/23/2017.
+ * class that help filtering list by course and mark and contains number of row which nedd to read
  */
 
 public class Filter {
@@ -19,14 +20,14 @@ public class Filter {
 
     public Filter(int readNumber) {
         this.readNumber = readNumber;
-        courseId=UNINITIALIZED;
-        mark=UNINITIALIZED;
+        courseId = UNINITIALIZED;
+        mark = UNINITIALIZED;
     }
 
-    public Filter(){
-        courseId=UNINITIALIZED;
-        mark=UNINITIALIZED;
-        readNumber=UNINITIALIZED;
+    public Filter() {
+        courseId = UNINITIALIZED;
+        mark = UNINITIALIZED;
+        readNumber = UNINITIALIZED;
     }
 
     public int getCourseId() {

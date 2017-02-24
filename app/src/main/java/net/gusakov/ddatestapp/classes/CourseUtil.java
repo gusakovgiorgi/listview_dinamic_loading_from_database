@@ -1,7 +1,7 @@
 package net.gusakov.ddatestapp.classes;
 
 /**
- * Created by hasana on 2/22/2017.
+ * Created by gusakov on 2/22/2017.
  */
 
 public class CourseUtil {
@@ -59,11 +59,13 @@ public class CourseUtil {
         }
         return courseString;
     }
-    public static int[] getCourseIds(){
-        return new int[]{COURSE0ID,COURSE1ID,COURSE2ID,COURSE3ID};
+
+    public static int[] getCourseIds() {
+        return new int[]{COURSE0ID, COURSE1ID, COURSE2ID, COURSE3ID};
     }
-    public static String[] getCourseStrings(){
-        return new String[]{COURSE0TEXT,COURSE1TEXT,COURSE2TEXT,COURSE3TEXT};
+
+    public static String[] getCourseStrings() {
+        return new String[]{COURSE0TEXT, COURSE1TEXT, COURSE2TEXT, COURSE3TEXT};
     }
 
     public static boolean isValidId(int id) {

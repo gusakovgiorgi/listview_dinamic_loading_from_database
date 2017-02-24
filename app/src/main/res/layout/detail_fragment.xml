@@ -2,54 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_horizontal_margin"
-    android:paddingLeft="@dimen/filter_dialog_padding_left"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/filter_dialog_name"
+        android:text="@string/detail_dialog_name"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:paddingTop="@dimen/filter_dialog_vertical_margin"
+        android:paddingLeft="@dimen/filter_dialog_padding_left"
+        android:layout_marginBottom="@dimen/detail_dialog_name_margin_bottom"
+        android:id="@+id/textView" />
 
-    <Spinner
-        android:id="@+id/courseSpinnerId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/filter_dialog_vertical_margin"></Spinner>
+    <include layout="@layout/detail_fragment_course_field"
+        android:id="@+id/firstCourseRootId"></include>
 
-    <EditText
-        android:id="@+id/markEditTextId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/filter_dialog_vertical_margin"
-        android:hint="@string/filter_dialog_mark"
-        android:inputType="number" />
+    <include layout="@layout/detail_fragment_course_field"
+        android:id="@+id/secondCourseRootId"></include>
+    <include layout="@layout/detail_fragment_course_field"
+        android:id="@+id/thirdCourseRootId"></include>
+    <include layout="@layout/detail_fragment_course_field"
+        android:id="@+id/fourthsCourseRootId"></include>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/averangeMarkTxtViewId"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/detail_dialog_name_margin_bottom"
+        android:textSize="@dimen/detail_dialog_averange_mark_text_size"
+        android:layout_marginLeft="@dimen/detail_dialog_side_margin"
+        android:text="Averange Mark"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_dialog_horizontal_line_size"
+        android:layout_centerVertical="true"
+        android:background="@color/grey"
+        android:layout_marginLeft="@dimen/detail_dialog_side_margin"
+        android:layout_marginRight="@dimen/detail_dialog_side_margin"
+       />
+
+    <Button
         android:layout_gravity="right"
-        android:layout_marginTop="@dimen/filter_dialog_vertical_margin"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/clearButtonId"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/filter_dialog_clear_button"
-            android:textColor="@color/white" />
-
-        <Button
             android:id="@+id/OkButtonId"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/filter_dialog_button_left_margin"
+        android:layout_marginTop="@dimen/detail_dialog_button_margin"
+            android:layout_marginRight="@dimen/detail_dialog_button_margin"
             android:text="@string/filter_dialog_ok_button"
             android:textColor="@color/white" />
-    </LinearLayout>
 
 </LinearLayout>

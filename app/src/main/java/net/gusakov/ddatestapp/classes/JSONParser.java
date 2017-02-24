@@ -17,7 +17,8 @@ import java.util.List;
 import static net.gusakov.ddatestapp.classes.CourseUtil.UNINITIALIZED;
 
 /**
- * Created by hasana on 2/22/2017.
+ * Created by gusakov on 2/22/2017.
+ * parsing JSON string and pass data to database
  */
 
 public class JSONParser {
@@ -34,34 +35,34 @@ public class JSONParser {
     private static final String TAG = "JSONParser";
     private int mark = UNINITIALIZED;
     private int courseId = UNINITIALIZED;
-    private final int ARRAYLIST_SIZE=3100;
-    private List<Student> students=new ArrayList<>(ARRAYLIST_SIZE);
+    private final int ARRAYLIST_SIZE = 3100;
+    private List<Student> students = new ArrayList<>(ARRAYLIST_SIZE);
     private Context ctx;
     private Database db;
 
-    public JSONParser(Context ctx){
-        this.ctx=ctx;
-        db=new Database(ctx);
+    public JSONParser(Context ctx) {
+        this.ctx = ctx;
+        db = new Database(ctx);
     }
 
     public void parse(String jsnString) throws JSONException {
-        JSONArray mainArray=new JSONArray(jsnString);
+        JSONArray mainArray = new JSONArray(jsnString);
         Student student;
-        for (int i=0;i<mainArray.length();i++){
-            JSONObject jsnObj=mainArray.getJSONObject(i);
-            String hashStr=jsnObj.getString(JSON_ID);
-            String firstName=jsnObj.getString(JSON_FIRSTNAME);
-            String lastName=jsnObj.getString(JSON_LASTNAME);
-            long birthday=jsnObj.getLong(JSON_BIRTHDAY);
+        for (int i = 0; i < mainArray.length(); i++) {
+            JSONObject jsnObj = mainArray.getJSONObject(i);
+            String hashStr = jsnObj.getString(JSON_ID);
+            String firstName = jsnObj.getString(JSON_FIRSTNAME);
+            String lastName = jsnObj.getString(JSON_LASTNAME);
+            long birthday = jsnObj.getLong(JSON_BIRTHDAY);
             int courceId;
             int mark;
-            student=new Student(hashStr,firstName,lastName,birthday);
-            JSONArray coursesArray=jsnObj.getJSONArray(JSON_COURSES);
-            for (int j=0;j<coursesArray.length();j++){
-                JSONObject courceJsnObj=coursesArray.getJSONObject(j);
-                courceId=CourseUtil.getCourseId(courceJsnObj.getString(JSON_COURSE_NAME));
-                mark=courceJsnObj.getInt(JSON_COURSE_MARK);
-                student.setMark(courceId,mark);
+            student = new Student(hashStr, firstName, lastName, birthday);
+            JSONArray coursesArray = jsnObj.getJSONArray(JSON_COURSES);
+            for (int j = 0; j < coursesArray.length(); j++) {
+                JSONObject courceJsnObj = coursesArray.getJSONObject(j);
+                courceId = CourseUtil.getCourseId(courceJsnObj.getString(JSON_COURSE_NAME));
+                mark = courceJsnObj.getInt(JSON_COURSE_MARK);
+                student.setMark(courceId, mark);
             }
             printStudent(student);
             students.add(student);
@@ -79,9 +80,9 @@ public class JSONParser {
     }
 
     private void nextAppLaunchNoNeedFillDatabase() {
-        SharedPreferences sharedPref=ctx.getSharedPreferences(MainActivity.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = ctx.getSharedPreferences(MainActivity.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = sharedPref.edit();
-        ed.putBoolean(MainActivity.SHARED_PREF_FIRST_TIME_KEY,false);
+        ed.putBoolean(MainActivity.SHARED_PREF_FIRST_TIME_KEY, false);
         ed.commit();
     }
 

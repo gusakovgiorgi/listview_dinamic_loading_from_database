@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import net.gusakov.ddatestapp.R;
@@ -44,6 +45,8 @@ public class StudentCursorAdapter extends CursorAdapter {
     private Database db;
     private Filter filter;
     private View.OnClickListener clickListener;
+    private boolean firstTime=true;
+    private ListView listView;
 
     private StudentCursorAdapter(Activity context, Cursor cursor, final Database db) {
         super(context, cursor, 0);
@@ -102,9 +105,13 @@ public class StudentCursorAdapter extends CursorAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        if(firstTime){
+            listView=(ListView)parent;
+            firstTime=false;
+        }
         if (position > studentsReaded - 5) {
             filter.setReadNumber(studentsReaded + studentsIncrease);
-            loadData(filter);
+            loadData(filter,false);
 
         }
         return super.getView(position, convertView, parent);
@@ -115,10 +122,14 @@ public class StudentCursorAdapter extends CursorAdapter {
     }
 
     //can be called from outside
-    public void loadData(Filter filter) {
+    public void loadData(Filter filter,Boolean filtered) {
         this.filter = filter;
         if (filter.getReadNumber() == UNINITIALIZED) {
-            filter.setReadNumber(studentsReaded < studentsIncrease ? studentsIncrease : studentsReaded);
+            filter.setReadNumber(studentsIncrease);
+            studentsReaded=studentsIncrease;
+        }
+        if(filtered){
+            listView.setSelection(0);
         }
         new LoadDataAsynTask(context, this).execute(filter);
 

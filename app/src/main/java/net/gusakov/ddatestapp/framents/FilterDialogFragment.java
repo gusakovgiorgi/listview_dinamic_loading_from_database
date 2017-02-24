@@ -72,10 +72,10 @@ public class FilterDialogFragment extends DialogFragment {
                         Filter filter = new Filter();
                         filter.setCourseId(CourseUtil.getCourseId((String) courseSpinner.getSelectedItem()));
                         filter.setMark(Integer.parseInt(markEdtxt.getText().toString()));
-                        adapter.loadData(filter);
+                        adapter.loadData(filter,true);
                     } else {
                         Filter emptyFilter = new Filter();
-                        adapter.loadData(emptyFilter);
+                        adapter.loadData(emptyFilter,true);
                     }
                     getDialog().dismiss();
                     saveFilterState(courseSpinner, markEdtxt);
@@ -91,7 +91,7 @@ public class FilterDialogFragment extends DialogFragment {
                 markEdtxt.setText("");
                 try {
                     Filter emptyFilter = new Filter();
-                    adapter.loadData(emptyFilter);
+                    adapter.loadData(emptyFilter,true);
                 } catch (NullPointerException e) {
                     throw new NullPointerException("Should call setAdapter(StudentCursorAdapter adapter) before show dialog");
                 }
